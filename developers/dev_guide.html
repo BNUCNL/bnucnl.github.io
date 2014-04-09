@@ -1,0 +1,253 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Developer Guidelines &mdash; FreeROI 0.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="FreeROI 0.1.1 documentation" href="../index.html" />
+    <link rel="up" title="Development Manual" href="../devel_manual.html" />
+    <link rel="next" title="Software Architecture" href="architecture.html" />
+    <link rel="prev" title="Development Manual" href="../devel_manual.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="architecture.html" title="Software Architecture"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../devel_manual.html" title="Development Manual"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+          <li><a href="../devel_manual.html" accesskey="U">Development Manual</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="developer-guidelines">
+<h1>Developer Guidelines<a class="headerlink" href="#developer-guidelines" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="development-process">
+<h2>Development process<a class="headerlink" href="#development-process" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="git-repository">
+<h3>Git Repository<a class="headerlink" href="#git-repository" title="Permalink to this headline">¶</a></h3>
+<p>The git repository is structured by a number of branches and clones (forks) at
+<a class="reference external" href="https://github.com/BNUCNL/FreeROI">github</a>.</p>
+<p>Anyone is welcome to fork the repository on <a class="reference external" href="https://github.com/BNUCNL/FreeROI">github</a> (just click on &#8220;Fork&#8221;
+button), and file a &#8220;Pull request&#8221; whenever he/she thinks that his changes are
+ready to be included (merged) into the main repository.</p>
+</div>
+<div class="section" id="working-with-freeroi-source-code">
+<h3>Working with FreeROI source code<a class="headerlink" href="#working-with-freeroi-source-code" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">If you are a first-time contributor:</p>
+<ul>
+<li><p class="first">Go to <a class="reference external" href="https://github.com/BNUCNL/FreeROI">github</a> and click the &#8220;fork&#8221; button to create your own copy of the
+project.</p>
+</li>
+<li><p class="first">Clone the project to your local computer:</p>
+<div class="highlight-python"><pre>git clone https://github.com/your-username/FreeROI.git</pre>
+</div>
+</li>
+<li><p class="first">Add upstream repository:</p>
+<div class="highlight-python"><pre>git remote add upstream https://github.com/BNUCNL/FreeROI.git</pre>
+</div>
+</li>
+<li><p class="first">Now, you have remote repositories named:</p>
+<ul class="simple">
+<li><em>upstream</em>, which refers to the <strong>FreeROI</strong> repository</li>
+<li><em>origin</em>, which refers to your personal fork</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="first">Develop your contribution:</p>
+<ul>
+<li><p class="first">Pull the latest changes from upstream:</p>
+<div class="highlight-python"><pre>git checkout master
+git pull upstream master</pre>
+</div>
+</li>
+<li><p class="first">Create a branch for the feature you want to work on. Since the branch name
+will appear in the merge message, use a sensible name such as
+&#8216;add-region-grow&#8217;:</p>
+<div class="highlight-python"><pre>git checkout -b add-region-grow</pre>
+</div>
+</li>
+<li><p class="first">Commit locally as you progress (git add and git commit)</p>
+</li>
+</ul>
+</li>
+<li><p class="first">To submit your contribution:</p>
+<ul>
+<li><p class="first">Push your changes back to your fork on GitHub:</p>
+<div class="highlight-python"><pre>git push origin ad-region-grow</pre>
+</div>
+</li>
+<li><p class="first">Go to GitHub. The new branch will show up with a Pull Request button -
+ckick it.</p>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="divergence-between-upstream-master-and-your-feature-branch">
+<h3>Divergence between upstream master and your feature branch<a class="headerlink" href="#divergence-between-upstream-master-and-your-feature-branch" title="Permalink to this headline">¶</a></h3>
+<p>Do <em>not</em> ever merge the main branch into your. If GitHub indicates that the
+branch of your Pull Request can no longer be merged automatically, rebase
+onto master:</p>
+<div class="highlight-python"><pre>git checkout mster
+git pull upstream master
+git checkout add-region-grow
+git rebase master</pre>
+</div>
+<p>If any conflicts occur, fix the according files and continue:</p>
+<div class="highlight-python"><pre>git add conflict-file1 conflict-file2
+git rebase --continue</pre>
+</div>
+<p>However, you should only rebase your own branches and must generally not
+rebase any branch which you collaborate on with someone else.</p>
+<p>Finally, you must push your rebase branch:</p>
+<div class="highlight-python"><pre>git push --force origin add-region-grow</pre>
+</div>
+</div>
+<div class="section" id="some-other-things-you-might-want-to-do">
+<h3>Some other things you might want to do<a class="headerlink" href="#some-other-things-you-might-want-to-do" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">Delete a branch on github</p>
+<div class="highlight-python"><pre>git checkout master
+# delete branch locally
+git branch -D my-unwanted-branch
+# delete branch in github
+git push origin :my-unwanted-branch</pre>
+</div>
+</li>
+<li><p class="first">Check out a remote branch</p>
+<div class="highlight-python"><pre># fetch all the remote branches for you
+git fetch
+# check out the branch you are interested in, giving you a local copy
+git checkout -b test origin/test</pre>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="commits">
+<h3>Commits<a class="headerlink" href="#commits" title="Permalink to this headline">¶</a></h3>
+<p>Please prefix all commit summaries with one (or more) of the following labels.
+This should help others to easily classify the commits inti meaningful
+categoroes:</p>
+<ul class="simple">
+<li><em>BF</em> : bug fix</li>
+<li><em>RF</em> : refactoring</li>
+<li><em>NF</em> : new feature</li>
+<li><em>ENH</em> : enhancement of an existing feature/facility</li>
+<li><em>BW</em> : address backward-compatibility</li>
+<li><em>OPT</em> : optimization</li>
+<li><em>BK</em> : breaks someing and or tests fail</li>
+<li><em>PL</em> : making pylint happier</li>
+<li><em>DOC</em> : for all kinds of document related commits</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Developer Guidelines</a><ul>
+<li><a class="reference internal" href="#development-process">Development process</a><ul>
+<li><a class="reference internal" href="#git-repository">Git Repository</a></li>
+<li><a class="reference internal" href="#working-with-freeroi-source-code">Working with FreeROI source code</a></li>
+<li><a class="reference internal" href="#divergence-between-upstream-master-and-your-feature-branch">Divergence between upstream master and your feature branch</a></li>
+<li><a class="reference internal" href="#some-other-things-you-might-want-to-do">Some other things you might want to do</a></li>
+<li><a class="reference internal" href="#commits">Commits</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../devel_manual.html"
+                        title="previous chapter">Development Manual</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="architecture.html"
+                        title="next chapter">Software Architecture</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/developers/dev_guide.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="architecture.html" title="Software Architecture"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../devel_manual.html" title="Development Manual"
+             >previous</a> |</li>
+        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+          <li><a href="../devel_manual.html" >Development Manual</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, FreeROI Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

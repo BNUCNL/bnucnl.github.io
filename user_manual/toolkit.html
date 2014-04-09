@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Image Processing Toolkit &mdash; FreeROI 0.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="FreeROI 0.1.1 documentation" href="../index.html" />
+    <link rel="up" title="User Manual" href="../user_manual.html" />
+    <link rel="next" title="Development Manual" href="../devel_manual.html" />
+    <link rel="prev" title="ROI Generation" href="roianalysis.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../devel_manual.html" title="Development Manual"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="roianalysis.html" title="ROI Generation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+          <li><a href="../user_manual.html" accesskey="U">User Manual</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="image-processing-toolkit">
+<span id="data-analysis-toolkit"></span><h1>Image Processing Toolkit<a class="headerlink" href="#image-processing-toolkit" title="Permalink to this headline">¶</a></h1>
+<p>As an integrated software suite for neuroimaging data processing, FreeROI
+not only provides the user-friendly pipeline for defining ROI, but also many
+related tools for image processing, such as smoothing, binarization, and
+image segmentation.</p>
+<p>All tools could be classified into several categories based on their
+utility, and placed in the menu bar.</p>
+<img alt="../_images/menu.png" src="../_images/menu.png" />
+<p>Also, many common tools are also available in the Tools Table in the
+lower-left of the window.</p>
+<img alt="../_images/tools_tab.png" src="../_images/tools_tab.png" />
+<div class="section" id="basic-tools">
+<h2>Basic Tools<a class="headerlink" href="#basic-tools" title="Permalink to this headline">¶</a></h2>
+<p>In FreeROI, the images could be binarized, smoothed, or masked by another image
+by a few clicks, liberating users from complex command lines.</p>
+<ol class="arabic">
+<li><p class="first">Binarization</p>
+<p>An image could be binarized with this tool. A threshold should be given,
+the voxel, which value is not less than threshold, would be assigned as 1,
+otherwise, assigned as 0.</p>
+<p>To binarize an image, first select this image in the image list (left click
+the image, this image would be highlighted). Then, open the binarization
+tool from the tool bar or Basic Tools table on the lower-left of the window.
+Specify the threshold value and output volume name, a binarized image would
+be generated after running the tool.</p>
+<img alt="../_images/binarization.png" src="../_images/binarization.png" />
+</li>
+<li><p class="first">Smoothing</p>
+<p>A Gaussian filter could be used for image smoothing. The parameter <em>sigma</em>
+- standard deviation for Gaussian kernel - should be specified in voxel
+units first.</p>
+<p>To smooth an image, first select this image in the image list (left click
+the image). Then open the smoothing tool, and specify the sigma of the
+Gaussian kernel as well as the output volume name, a smoothed image would
+be generated.</p>
+<img alt="../_images/smoothing.png" src="../_images/smoothing.png" />
+<p>Note: The relationship between the <em>full width at half maximum (FWHM)</em> and
+<em>sigma</em> could be derived as FWHM = 2.3548 * sigma.</p>
+</li>
+<li><p class="first">Inversion</p>
+<p>In fMRI activation image, the negative activation is usually also concerned
+by reserchers, yet no thresholding process for negative value is implemented
+in FreeROI. To facilitate users extract regions with negative value, the
+image could be inverted by multiplying with -1 first.</p>
+<p>After the source image is selected in the image list, click the <em>inverse</em>
+button, an inversed image would be generated directly.</p>
+</li>
+<li><p class="first">Intersection</p>
+<p>An image could be masked by another image using intersection tool. In this
+tool, the &#8220;mask&#8221; image is selected as one of the loaded image, and binarized
+after thresholding with the lower-bound value for display. The output volume
+name is specified by users.</p>
+<img alt="../_images/intersect.png" src="../_images/intersect.png" />
+</li>
+<li><p class="first">Local Maxima Detection</p>
+<p>This tool is used for extract local maxima from an image. The local maxima
+could be used for defining ROIs with regular shape.</p>
+<p>To extract the local maxima from an image, a least distance of local maximum
+is needed. If the distance between two local maximum is less than this lower
+bound, the smaller local maxima would be discarded.</p>
+<img alt="../_images/local_max.png" src="../_images/local_max.png" />
+</li>
+<li><p class="first">Extract mean time course</p>
+<p>After a ROI/mask is defined, this tool could be used to extract mean time
+course of this ROI from an 3D/4D image.</p>
+<p>First, the source image should be selected from the image list. Then, open
+this tool from tool bar, and select a loaded image as the mask. The mean
+time course of this mask extracted from the source image would be exported
+to a csv file.</p>
+<img alt="../_images/extract_mts.png" src="../_images/extract_mts.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="image-edit">
+<h2>Image Edit<a class="headerlink" href="#image-edit" title="Permalink to this headline">¶</a></h2>
+<p>The image could be edited in voxel or ROI unit. Click the <em>pen</em> icon on the
+tool bar, the Image Edit Dialog would open.</p>
+<img alt="../_images/cursor_status.png" src="../_images/cursor_status.png" />
+<p>As the goal of <strong>FreeROI</strong> is to generate or label ROIs, the value assigned to
+each voxel is specified by a label list. Each label list consists of many
+different value and the corresponding label name.</p>
+<img alt="../_images/voxel_edit.png" src="../_images/voxel_edit.png" />
+<p>Select one label from ths label list, you can assign the corresponding value to
+a voxel or ROI.</p>
+<p>Also, the label list could be customized by editing a label config file. A sample
+is shown here.</p>
+<img alt="../_images/label_config_file.png" src="../_images/label_config_file.png" />
+<p>This file containts several rows and six columns. Each row represents a ROI.
+Each column is separated by the blanks. The 1st column records the value of the
+region, the 2nd records the name of the region. The other four columns represent
+the R, G, B, and transparent degree while display this region in an image.</p>
+<p>Place this file into the directory <cite>data/labelconfig</cite> in <strong>FreeROI</strong> directory,
+the program would load it automatically.</p>
+<ol class="arabic">
+<li><p class="first">Voxel Edit</p>
+<p>Select the image which you want to edit from the image list, and choose a
+label from label list, then you can modify the value of voxel freely by
+drawing on the image.
+In addition, you could also set the number of voxels selected one time
+by setting the <cite>Brush Size</cite>.</p>
+</li>
+<li><p class="first">ROI Edit</p>
+<p>Similar to the Voxel Edit, this tool could help you modify the value in
+ROI unit by a single click on the image.</p>
+<img alt="../_images/roi_edit.png" src="../_images/roi_edit.png" />
+</li>
+<li><p class="first">ROI Batch</p>
+</li>
+</ol>
+<blockquote>
+<div><p>In ROI batch, you can modify several ROIs one time, and store the modified
+ROI into a new image.</p>
+<img alt="../_images/roi_batch.png" src="../_images/roi_batch.png" />
+</div></blockquote>
+</div>
+<div class="section" id="image-segmentation">
+<h2>Image Segmentation<a class="headerlink" href="#image-segmentation" title="Permalink to this headline">¶</a></h2>
+<p>As the initial step for defining ROI semi-automatically, an image could be
+divided into several subregions each with a specific label using image
+segmentation algorithm. In FreeROI, three segmentation methods could be used,
+including <em>cluster detection</em>, <em>watershed</em>, and <em>region growing</em>.</p>
+<ol class="arabic">
+<li><p class="first">Cluster Detection</p>
+<p>After a voxel-wise analysis, researchers usually only concern the regions
+which show a significant effect of experiment manipulation. Thus, after
+a threshold processing, the image would consist of many separated clusters
+which defined by a set of continous voxels. With the <em>cluster detection</em>
+approach, each cluster could be extracted out and labeled with a
+distinguishable marker.</p>
+<img alt="../_images/clusters.png" src="../_images/clusters.png" />
+<p>A threshold value should be specified in this tool.</p>
+</li>
+<li><p class="first">Watershed</p>
+<p><em>Watershed</em> algorithm could divide an image following the topographical
+information in the image. Specifically, it treats voxel value as a local
+topography (elevation). The algorithm finds local minima and &#8220;grow&#8221;
+regions around these minima by incorporating neighboring voxels in
+increasing order of voxel value, until basins attributed to different
+markers meet on watershed lines. In addition, to segment an fMRI activation
+image, for example, the image could be inverted (multiplied with -1) before
+segmentation. The segmented image consists of several regions each with a
+activation peak, also an activation cluster which has more than one local
+maxima would be divided into several sub-regions which are separated with
+watershed lines.</p>
+<img alt="../_images/watershed.png" src="../_images/watershed.png" />
+<p>Several parameters should be specified in this tool. First, the local minima
+could be detected automatically, or specified an image by user. Second,
+before segementation, the image could be smoothed to reduce noise effect.
+Third, a threshold value is used to control the extent of the subregions.
+Fourth, the image could be segmented following different strategies, this
+option is selected in the <em>Segment Function</em>.</p>
+</li>
+<li><p class="first">Region Growing</p>
+<p><em>Region growing</em> is a simple voxel(pixel)-based image segmentation method.
+This approach examines neighboring voxels of initial &#8220;seed point&#8221; and
+determines whether the voxel neighbors should be added to the region. The
+preocess is iterated on, in the same manner as general data clustering
+algorithm.</p>
+<p>The first step in region growing is to select a seed point. The initial
+region begins as the exact location of this seed. The region is then grown
+from the seed point to adjacent points depending on a similarity constraint.
+Also a region size is required from the user. The growing process is
+continued until the region size reach this upper-bound.</p>
+<img alt="../_images/region_grow.png" src="../_images/region_grow.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="roi-tools">
+<h2>ROI Tools<a class="headerlink" href="#roi-tools" title="Permalink to this headline">¶</a></h2>
+<p>This set of tools are designed for ROI generation with regular shape, merging,
+edge detection, and several other utility.</p>
+<ol class="arabic">
+<li><p class="first">Merging</p>
+<p>When you need to pool many ROIs stored in different images together, this
+tool could help you.</p>
+<p>Open the merging tool, and select the loaded images which you want to be
+merged together, a merged image would be generated.</p>
+</li>
+<li><p class="first">Edge Detection</p>
+<p>This tool is used to extract the edge of the ROI. It&#8217;s very useful when you
+need to display the ROI as a enclosed boundary.</p>
+<p>A sample is presented. In the left image, a ROI is displayed in blue, its
+edge is detected with this tool, and displayed in green color in the right.</p>
+<img alt="../_images/edge_detect.png" src="../_images/edge_detect.png" />
+</li>
+<li><p class="first">Regular ROI</p>
+<p>Provided an image which contains many seed points, this tool could generate
+many ROIs with regular shape (cube or sphere) using these seeds as centers.
+The generated regular ROIs would be stored in a new image.</p>
+<img alt="../_images/regular_roi.png" src="../_images/regular_roi.png" />
+</li>
+<li><p class="first">ROI to Surface</p>
+<p>It&#8217;s an experimental tool which used to map a ROI to the nearest surface
+of white/gray matter. When you want to tract a fiber based on DTI data,
+this procedure could improve the quality of fiber tracting.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="morphological-processing">
+<h2>Morphological Processing<a class="headerlink" href="#morphological-processing" title="Permalink to this headline">¶</a></h2>
+<p>Morphological image processing is a collection of non-linear operations related
+to the shape or morphology of features in an image. According to
+<a class="reference external" href="http://en.wikipedia.org/wiki/Morphological_image_processing">Wikipedia</a> ,
+morphological operations rely only on the relative ordering of voxel/pixel
+values, not on their numerical values, and therefore are especially suited to
+the processing of binary images. Morphological operations can also be applied
+to greyscale images such that their light transfer functions are unknown and
+therefore their absolute voxel/pixel values are of no or minor interest.</p>
+<ol class="arabic simple">
+<li>Erosion
+Erosion is one of two fundamental operations (the other being dilation) in
+morohological processing from which all other morphological operations are
+based. The operation could be used to reduce the extent of foreground in the
+image.</li>
+<li>Dilation
+The effect of dilation is opposite to that of erosion. It would enlarge the
+extent of foreground of the image.</li>
+<li>Opening
+As the combination of <em>erosion</em> and <em>dilation</em>, the opening operation is
+usually used as a basic workhorse of morphological noise removal. Opening
+removes small objects from the foreground of an image, placing them in the
+background.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Image Processing Toolkit</a><ul>
+<li><a class="reference internal" href="#basic-tools">Basic Tools</a></li>
+<li><a class="reference internal" href="#image-edit">Image Edit</a></li>
+<li><a class="reference internal" href="#image-segmentation">Image Segmentation</a></li>
+<li><a class="reference internal" href="#roi-tools">ROI Tools</a></li>
+<li><a class="reference internal" href="#morphological-processing">Morphological Processing</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="roianalysis.html"
+                        title="previous chapter">ROI Generation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../devel_manual.html"
+                        title="next chapter">Development Manual</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/user_manual/toolkit.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../devel_manual.html" title="Development Manual"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="roianalysis.html" title="ROI Generation"
+             >previous</a> |</li>
+        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+          <li><a href="../user_manual.html" >User Manual</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, FreeROI Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
