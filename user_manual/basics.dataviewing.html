@@ -1,0 +1,163 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Data Viewing &mdash; FreeROI 0.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="FreeROI 0.1.1 documentation" href="../index.html" />
+    <link rel="up" title="User Manual" href="../user_manual.html" />
+    <link rel="next" title="ROI Generation" href="roianalysis.html" />
+    <link rel="prev" title="Data Format" href="basics.dataformat.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="roianalysis.html" title="ROI Generation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="basics.dataformat.html" title="Data Format"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+          <li><a href="../user_manual.html" accesskey="U">User Manual</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="data-viewing">
+<span id="id1"></span><h1>Data Viewing<a class="headerlink" href="#data-viewing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="load-and-save">
+<h2>Load and save<a class="headerlink" href="#load-and-save" title="Permalink to this headline">¶</a></h2>
+<p>To load an image into FreeROI, open the <tt class="docutils literal"><span class="pre">File</span></tt> menu and choose <tt class="docutils literal"><span class="pre">Add</span> <span class="pre">volume</span></tt>.
+A file viewer will appear and let you choose the file you want to load.</p>
+<p>Once you load an image, the name of the image will show on the image list placed on the left side of the window.</p>
+<img alt="../_images/image_list.png" src="../_images/image_list.png" />
+<p>There is a tickbox before each image name, only ticked images will be shown on the right window.
+To rename a image, double click the name of that image in the image list.
+In all the images loaded, all operations will only affect the one which has been highlighted in the list.
+You could click on any image to make it the highlighted one.</p>
+<p>To save an image which has been finished editing, first highlight it in the image list, then open <tt class="docutils literal"><span class="pre">File</span></tt> menu and choose <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">volume</span> <span class="pre">as...</span></tt>.
+A file viewer will appear to let you choose where to save the image.
+You could also specify another name for the image that differs from the its current name in the image list.</p>
+</div>
+<div class="section" id="slice-view">
+<h2>Slice view<a class="headerlink" href="#slice-view" title="Permalink to this headline">¶</a></h2>
+<p>FreeROI provides two ways for you to view and edit your image data: slice view and orthographic view.</p>
+<p>Slice view is the default option for displaying images.
+As you load an image, its data will automatically show on the slice-viewing window in the right side of the software.
+The data is displayed as sliced through the inferior-to-superior axis, like this:</p>
+<img alt="../_images/sliceview.png" src="../_images/sliceview.png" />
+<p>The number of sclice in each row can be adjusted by resize the window size of the software.</p>
+<p>If you have load multiple images, those ticked in the image list will be overlapped into one single image to display.
+You could set the order of each image in the overlap process by move the image up or down in the image list.
+The transparancy could also be set by adjusting the <tt class="docutils literal"><span class="pre">Visibility</span></tt> bar under the image list.</p>
+<img alt="../_images/image_setting.png" src="../_images/image_setting.png" />
+<p>If you want to only show data among some range in the image, you could set the minimum and maximum limit by set the values in <tt class="docutils literal"><span class="pre">Min</span></tt> and <tt class="docutils literal"><span class="pre">Max</span></tt> attribute boxes.
+The colormap used for each image could also be set by choosing the prefered one listed in the <tt class="docutils literal"><span class="pre">Colormap</span></tt> list.</p>
+</div>
+<div class="section" id="orthographic-view">
+<h2>Orthographic view<a class="headerlink" href="#orthographic-view" title="Permalink to this headline">¶</a></h2>
+<p>The orthographic view is another displaying scheme to explore your data.
+Unlike the slice view, the data is displayed by three slice from three different viewpoints, like this:</p>
+<img alt="../_images/orthview.png" src="../_images/orthview.png" />
+<p>You could click on any of the three slices and then move the cursor to set the center point for the orthographic projection.
+All other settings are similar to the slice view aforementioned.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Data Viewing</a><ul>
+<li><a class="reference internal" href="#load-and-save">Load and save</a></li>
+<li><a class="reference internal" href="#slice-view">Slice view</a></li>
+<li><a class="reference internal" href="#orthographic-view">Orthographic view</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="basics.dataformat.html"
+                        title="previous chapter">Data Format</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="roianalysis.html"
+                        title="next chapter">ROI Generation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/user_manual/basics.dataviewing.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="roianalysis.html" title="ROI Generation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="basics.dataformat.html" title="Data Format"
+             >previous</a> |</li>
+        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+          <li><a href="../user_manual.html" >User Manual</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, FreeROI Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

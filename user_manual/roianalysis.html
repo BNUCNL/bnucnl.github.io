@@ -1,0 +1,168 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ROI Generation &mdash; FreeROI 0.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="FreeROI 0.1.1 documentation" href="../index.html" />
+    <link rel="up" title="User Manual" href="../user_manual.html" />
+    <link rel="next" title="Image Processing Toolkit" href="toolkit.html" />
+    <link rel="prev" title="Data Viewing" href="basics.dataviewing.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="toolkit.html" title="Image Processing Toolkit"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="basics.dataviewing.html" title="Data Viewing"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+          <li><a href="../user_manual.html" accesskey="U">User Manual</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="roi-generation">
+<span id="id1"></span><h1>ROI Generation<a class="headerlink" href="#roi-generation" title="Permalink to this headline">¶</a></h1>
+<p>FreeROI provides three different ways to generate ROIs for neuroimaging studies.
+They are designed to meet diffent kinds of requirements of ROI generating.</p>
+<p>To generate ROI, you must first switch from the viewing mode to the edit mode, which could be done by clicking the <tt class="docutils literal"><span class="pre">Edit</span></tt> icon on the toobar:</p>
+<img alt="../_images/roiedit.png" src="../_images/roiedit.png" />
+<p>After that, an window for controlling the editting process will show up:</p>
+<img alt="../_images/editwindow.png" src="../_images/editwindow.png" />
+<p>The window contains two main parts: the ROI generation toolbar and the ROI label list.</p>
+<div class="section" id="roi-by-handpicking-subregion">
+<h2>ROI by handpicking subregion<a class="headerlink" href="#roi-by-handpicking-subregion" title="Permalink to this headline">¶</a></h2>
+<p>Generating ROI by handpicking subregion is an efficient method to reliably generate ROIs.
+Its based on the idea that a fucntional ROI which defined by a set of continous voxels could usually be subdivied into small subregions.
+Using these subregions, the boundary of the ROI could be reliably defined.
+In contrast, if the voxels were picked one by one, the boundaries may often vary substantially and lacks objectivity.</p>
+<p>To use this ROI generating method, first load an functional image, and then use the <tt class="docutils literal"><span class="pre">Watershed</span> <span class="pre">tool</span></tt> provided by the software to dividd the image into small segments, like this:</p>
+<img alt="../_images/segments.png" src="../_images/segments.png" />
+<p>The image contains candidate small segments to be picked as the ROI.</p>
+<p>To pick a segment and give it a label you want, first choose the label in the label list and chose <tt class="docutils literal"><span class="pre">ROI</span></tt> option in the ROI generation toolbar:</p>
+<img alt="../_images/optionROI.png" src="../_images/optionROI.png" />
+<p>Now click on any segment in the segmented image. The segment will be labeled as the desired ROI.</p>
+<p>There are many situations when you want to label multi-segments at once, or you want to pick the segments into another new images.
+You can achieve these goals by using the <tt class="docutils literal"><span class="pre">ROI</span> <span class="pre">batch</span></tt> tool:</p>
+<img alt="../_images/optionROIbatch.png" src="../_images/optionROIbatch.png" />
+<p>When this tool is chosen, the subregion you choose will not be labeled at once, but will only be listed in the <tt class="docutils literal"><span class="pre">Selected</span> <span class="pre">ROI</span></tt> box in the above image.
+You could choose as many as subregions you want, and then label them all togethor by clicking the <tt class="docutils literal"><span class="pre">Run</span></tt> button.
+These subregions will automatically be labelled and copied into a new image.</p>
+</div>
+<div class="section" id="roi-by-handdrawing">
+<h2>ROI by handdrawing<a class="headerlink" href="#roi-by-handdrawing" title="Permalink to this headline">¶</a></h2>
+<p>FreeROI also provides the traditional voxel-by-voxel ROI labeling method.
+To set ROI by choosing every voxel belonging to it, first set the ROI label in the label list, then click on the <tt class="docutils literal"><span class="pre">Voxel</span></tt> icon:</p>
+<img alt="../_images/optionVoxel.png" src="../_images/optionVoxel.png" />
+<p>Now you can choose voxel freely by drawing on the image view.
+You could also set the number of voxels selected one time by setting the <tt class="docutils literal"><span class="pre">Brush</span> <span class="pre">Size</span></tt>:</p>
+</div>
+<div class="section" id="regular-shape-generation">
+<h2>Regular shape generation<a class="headerlink" href="#regular-shape-generation" title="Permalink to this headline">¶</a></h2>
+<p>Finally, FreeROI provides regular ROI generating methods.
+Currently, FreeROI provides two kinds of regular ROI: sphere and cube.
+These regular shape can be set in the <tt class="docutils literal"><span class="pre">Regular</span> <span class="pre">ROI</span></tt> tool:</p>
+<img alt="../_images/regularroi.png" src="../_images/regularroi.png" />
+<p>You could choose the shape and the size of the shape, then click <tt class="docutils literal"><span class="pre">Run</span></tt>, the regular shape will be generated.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ROI Generation</a><ul>
+<li><a class="reference internal" href="#roi-by-handpicking-subregion">ROI by handpicking subregion</a></li>
+<li><a class="reference internal" href="#roi-by-handdrawing">ROI by handdrawing</a></li>
+<li><a class="reference internal" href="#regular-shape-generation">Regular shape generation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="basics.dataviewing.html"
+                        title="previous chapter">Data Viewing</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="toolkit.html"
+                        title="next chapter">Image Processing Toolkit</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/user_manual/roianalysis.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="toolkit.html" title="Image Processing Toolkit"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="basics.dataviewing.html" title="Data Viewing"
+             >previous</a> |</li>
+        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+          <li><a href="../user_manual.html" >User Manual</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, FreeROI Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

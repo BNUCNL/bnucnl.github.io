@@ -1,0 +1,220 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Software Architecture &mdash; FreeROI 0.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="FreeROI 0.1.1 documentation" href="../index.html" />
+    <link rel="up" title="Development Manual" href="../devel_manual.html" />
+    <link rel="prev" title="Developer Guidelines" href="dev_guide.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dev_guide.html" title="Developer Guidelines"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+          <li><a href="../devel_manual.html" accesskey="U">Development Manual</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="software-architecture">
+<h1>Software Architecture<a class="headerlink" href="#software-architecture" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In order to provide an easy-to-use graphic user interface, with the
+complicated neuroimage datasets and many different image processing methods,
+<strong>FreeROI</strong> is developed following a Model-View-Delegate (MVD) architecture
+pattern (a modified version of
+<a class="reference external" href="http://en.wikipedia.org/wiki/Model-view-controller">Model-View-Controller</a>
+architecture) under Qt framework.</p>
+<p>The software could be divided into three kinds of components, which are
+<em>model</em>, <em>view</em> and <em>delegate</em>. The MVD design defines the interaction
+between them.</p>
+<ul class="simple">
+<li>The <strong>model</strong> consists of neuroimage data, rules for image display and the
+functions to read/modify datasets in the application. This component is
+implemented as the the module <em>froi.gui.component.datamodel</em>, and the
+basic dataset is packaged in the module <em>froi.gui.base.bpdataset</em>, which is
+used in <em>datamodel</em>.</li>
+<li>The <strong>view</strong> is used to display neuroimage data in different types of
+representation, such as in a slice-wise fashion which implemented in
+<em>froi.gui.component.GridView</em> or displayed in three orthogonal sections
+implemented in the module <em>froi.gui.component.OrthView</em>. The parameters
+configuring display fashion, such as the order of overlapping images,
+contrast, colormap and transparent, are showed in a list and tabular view
+integrated in the module <em>froi.gui.component.LayerView</em>.</li>
+<li>The <strong>delegate</strong> mediates input from the users&#8217; operation, converting it
+to commands for the <strong>model</strong> or <strong>view</strong>.</li>
+</ul>
+<p>For details about these components, see the following section.</p>
+</div>
+<div class="section" id="module-description">
+<h2>Module Description<a class="headerlink" href="#module-description" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bpdateset">
+<h3>Bpdateset<a class="headerlink" href="#bpdateset" title="Permalink to this headline">¶</a></h3>
+<p>The module <em>bpdataset</em> defines the baisc data structure (VolumeDataset) &#8211; a single
+neuroimage data (NIFTI-1 format, either 3D or 4D) and many functions used to read/modify
+the value of single voxel and related parameters for display purpose.</p>
+<p>To illustrate the usage of class VolumeData, a toy example is present.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># import module bpdataset</span>
+<span class="kn">from</span> <span class="nn">froi.gui.base</span> <span class="kn">import</span> <span class="n">bpdataset</span>
+<span class="c"># initialize a new neuroimage dataset</span>
+<span class="n">new_img</span> <span class="o">=</span> <span class="n">bpdataset</span><span class="o">.</span><span class="n">VolumeDataset</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s">&#39;nifti-file&#39;</span><span class="p">,</span> <span class="n">label_config_center</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note: argument label_config_center is a setting class used for label display implemented
+in the FreeROI.</p>
+<p>After initialization, we could get several kinds of information from new_img, including
+the name of the data, the header and data stored in the file, and get/set many parameters
+used for image display (i.e. the minimum and maximum value for display, the colormap and
+the degree of transparence).</p>
+<p>It worths noting that, in order to optimize the speed of rending, the data stored in RGBA
+format used to display is created in each instance of VolumeDataset, named _rgba_list.
+While display, the RGBA data is converted into QImage format using a third-part-module
+array2qimage.</p>
+</div>
+<div class="section" id="datamodel">
+<h3>Datamodel<a class="headerlink" href="#datamodel" title="Permalink to this headline">¶</a></h3>
+<p>In FreeROI, the module <em>datamodel</em> implements a list model VolumeListModel to organize the
+dataset. The class VolumeListModel inherits from class QAbstractListModel from PyQt4.
+Every neuroimage dataset (an instance of bpdataset) is stored in a cell of the list model.
+The VolumeListModel provides several useful functions to access the dataset.</p>
+<p>As the central part of the software, none action could be done without the
+VolumeListModel. The users give their command to the model, and model takes specific
+action like change the display parameter or modify a voxel&#8217;s value for one dataset. At the
+same time, the model would ask other components like Viewer to cooporate with it to finish
+the job. More specially, while the data in list model has been changed, the model would
+emit specific signal. The other components like Viewer would accept the signal and take
+some programmed actions. For example, if the user changed the colormap for one neuroimage
+dataset, the model would emit a signal named &#8216;repaint_slices&#8217;, and the Viewer part would
+accept it and re-paint the display image based on the new colormap.</p>
+<p>Theoriticaly, the basic dataset (the instances of bpdataset) would not communicate with
+the other parts directly, except for VolumeListModel.</p>
+</div>
+<div class="section" id="image-viewer">
+<h3>Image Viewer<a class="headerlink" href="#image-viewer" title="Permalink to this headline">¶</a></h3>
+<p>FreeROI provides two kinds of Viewer to display the image, including GridView which
+displays the image in an axial view of field slice-by-slice and OrthView which displays
+image in three orthogonal points of view: axial, sagittal and coronal. Both viewers have
+same interface communicating other components in FreeROI.</p>
+</div>
+<div class="section" id="parameter-viewer">
+<h3>Parameter Viewer<a class="headerlink" href="#parameter-viewer" title="Permalink to this headline">¶</a></h3>
+<p>As another part of the component <strong>view</strong>, parameter viewer provides a graphic user
+interface to display and set the display parameters for high-lighted dataset in list
+model. All settings in parameter viewers would be passed to the VolumeListModel.</p>
+</div>
+<div class="section" id="toolsets">
+<h3>Toolsets<a class="headerlink" href="#toolsets" title="Permalink to this headline">¶</a></h3>
+<p>FreeROI provides many kinds of image processing tools, such as several implements based
+on different algorithms in image smoothing, image segmentation and feature extraction.
+All these tools form the <strong>delegate</strong> component in software.</p>
+</div>
+<div class="section" id="main-window">
+<h3>Main Window<a class="headerlink" href="#main-window" title="Permalink to this headline">¶</a></h3>
+<p>As a frame, main window combines all above parts together. It works like the &#8216;main file&#8217;
+in codes.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Software Architecture</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#module-description">Module Description</a><ul>
+<li><a class="reference internal" href="#bpdateset">Bpdateset</a></li>
+<li><a class="reference internal" href="#datamodel">Datamodel</a></li>
+<li><a class="reference internal" href="#image-viewer">Image Viewer</a></li>
+<li><a class="reference internal" href="#parameter-viewer">Parameter Viewer</a></li>
+<li><a class="reference internal" href="#toolsets">Toolsets</a></li>
+<li><a class="reference internal" href="#main-window">Main Window</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dev_guide.html"
+                        title="previous chapter">Developer Guidelines</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/developers/architecture.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dev_guide.html" title="Developer Guidelines"
+             >previous</a> |</li>
+        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+          <li><a href="../devel_manual.html" >Development Manual</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, FreeROI Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
