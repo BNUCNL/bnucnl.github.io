@@ -35,6 +35,8 @@ between them.
 
 For details about these components, see the following section.
 
+.. image:: imgs/framework.png
+
 Module Description
 ==================
 
