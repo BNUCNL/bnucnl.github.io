@@ -6,8 +6,6 @@
 Welcome to FreeROI's documentation!
 ===================================
 
-Contents:
-
 .. toctree::
    :maxdepth: 2
 

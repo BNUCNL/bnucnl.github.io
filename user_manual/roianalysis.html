@@ -8,15 +8,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>ROI Generation &mdash; FreeROI 0.1.1 documentation</title>
+    <title>ROI Generation &mdash; FreeROI 0.2.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1.1',
+        VERSION:     '0.2.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="FreeROI 0.1.1 documentation" href="../index.html" />
+    <link rel="top" title="FreeROI 0.2.0 documentation" href="../index.html" />
     <link rel="up" title="User Manual" href="../user_manual.html" />
     <link rel="next" title="Image Processing Toolkit" href="toolkit.html" />
     <link rel="prev" title="Data Viewing" href="basics.dataviewing.html" /> 
@@ -44,10 +44,51 @@
         <li class="right" >
           <a href="basics.dataviewing.html" title="Data Viewing"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+        <li><a href="../index.html">FreeROI 0.2.0 documentation</a> &raquo;</li>
           <li><a href="../user_manual.html" accesskey="U">User Manual</a> &raquo;</li> 
       </ul>
-    </div>  
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ROI Generation</a><ul>
+<li><a class="reference internal" href="#roi-by-handpicking-subregion">ROI by handpicking subregion</a></li>
+<li><a class="reference internal" href="#roi-by-handdrawing">ROI by handdrawing</a></li>
+<li><a class="reference internal" href="#regular-shape-generation">Regular shape generation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="basics.dataviewing.html"
+                        title="previous chapter">Data Viewing</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="toolkit.html"
+                        title="next chapter">Image Processing Toolkit</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/user_manual/roianalysis.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
 
     <div class="document">
       <div class="documentwrapper">
@@ -104,44 +145,6 @@ These regular shape can be set in the <tt class="docutils literal"><span class="
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">ROI Generation</a><ul>
-<li><a class="reference internal" href="#roi-by-handpicking-subregion">ROI by handpicking subregion</a></li>
-<li><a class="reference internal" href="#roi-by-handdrawing">ROI by handdrawing</a></li>
-<li><a class="reference internal" href="#regular-shape-generation">Regular shape generation</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="basics.dataviewing.html"
-                        title="previous chapter">Data Viewing</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="toolkit.html"
-                        title="next chapter">Image Processing Toolkit</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/user_manual/roianalysis.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
@@ -156,12 +159,12 @@ These regular shape can be set in the <tt class="docutils literal"><span class="
         <li class="right" >
           <a href="basics.dataviewing.html" title="Data Viewing"
              >previous</a> |</li>
-        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+        <li><a href="../index.html">FreeROI 0.2.0 documentation</a> &raquo;</li>
           <li><a href="../user_manual.html" >User Manual</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2013, FreeROI Team.
+        &copy; Copyright 2012-2014, Neuroinformatic Team in LiuLab from Beijing Normal University.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>

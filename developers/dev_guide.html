@@ -8,15 +8,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Developer Guidelines &mdash; FreeROI 0.1.1 documentation</title>
+    <title>Developer Guidelines &mdash; FreeROI 0.2.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1.1',
+        VERSION:     '0.2.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="FreeROI 0.1.1 documentation" href="../index.html" />
+    <link rel="top" title="FreeROI 0.2.0 documentation" href="../index.html" />
     <link rel="up" title="Development Manual" href="../devel_manual.html" />
     <link rel="next" title="Software Architecture" href="architecture.html" />
     <link rel="prev" title="Development Manual" href="../devel_manual.html" /> 
@@ -44,10 +44,56 @@
         <li class="right" >
           <a href="../devel_manual.html" title="Development Manual"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+        <li><a href="../index.html">FreeROI 0.2.0 documentation</a> &raquo;</li>
           <li><a href="../devel_manual.html" accesskey="U">Development Manual</a> &raquo;</li> 
       </ul>
-    </div>  
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Developer Guidelines</a><ul>
+<li><a class="reference internal" href="#development-process">Development process</a><ul>
+<li><a class="reference internal" href="#git-repository">Git Repository</a></li>
+<li><a class="reference internal" href="#working-with-freeroi-source-code">Working with FreeROI source code</a></li>
+<li><a class="reference internal" href="#divergence-between-upstream-master-and-your-feature-branch">Divergence between upstream master and your feature branch</a></li>
+<li><a class="reference internal" href="#some-other-things-you-might-want-to-do">Some other things you might want to do</a></li>
+<li><a class="reference internal" href="#commits">Commits</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../devel_manual.html"
+                        title="previous chapter">Development Manual</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="architecture.html"
+                        title="next chapter">Software Architecture</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/developers/dev_guide.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
 
     <div class="document">
       <div class="documentwrapper">
@@ -184,49 +230,6 @@ categoroes:</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Developer Guidelines</a><ul>
-<li><a class="reference internal" href="#development-process">Development process</a><ul>
-<li><a class="reference internal" href="#git-repository">Git Repository</a></li>
-<li><a class="reference internal" href="#working-with-freeroi-source-code">Working with FreeROI source code</a></li>
-<li><a class="reference internal" href="#divergence-between-upstream-master-and-your-feature-branch">Divergence between upstream master and your feature branch</a></li>
-<li><a class="reference internal" href="#some-other-things-you-might-want-to-do">Some other things you might want to do</a></li>
-<li><a class="reference internal" href="#commits">Commits</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="../devel_manual.html"
-                        title="previous chapter">Development Manual</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="architecture.html"
-                        title="next chapter">Software Architecture</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/developers/dev_guide.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
@@ -241,12 +244,12 @@ categoroes:</p>
         <li class="right" >
           <a href="../devel_manual.html" title="Development Manual"
              >previous</a> |</li>
-        <li><a href="../index.html">FreeROI 0.1.1 documentation</a> &raquo;</li>
+        <li><a href="../index.html">FreeROI 0.2.0 documentation</a> &raquo;</li>
           <li><a href="../devel_manual.html" >Development Manual</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2013, FreeROI Team.
+        &copy; Copyright 2012-2014, Neuroinformatic Team in LiuLab from Beijing Normal University.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
