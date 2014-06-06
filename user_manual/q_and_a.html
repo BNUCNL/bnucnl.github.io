@@ -19,7 +19,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-    <title>Introduction &mdash; FreeROI 0.2.1 documentation</title>
+    <title>Q&amp;A &mdash; FreeROI 0.2.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -40,8 +40,8 @@
     <link rel="shortcut icon" href="../_static/logo.ico"/>
     <link rel="top" title="FreeROI 0.2.1 documentation" href="../index.html" />
     <link rel="up" title="User Manual" href="../user_manual.html" />
-    <link rel="next" title="Data Format" href="basics.dataformat.html" />
-    <link rel="prev" title="User Manual" href="../user_manual.html" /> 
+    <link rel="next" title="Development Manual" href="../devel_manual.html" />
+    <link rel="prev" title="Image Processing Toolkit" href="toolkit.html" /> 
   </head>
   <body>
     <div class="related">
@@ -51,10 +51,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="basics.dataformat.html" title="Data Format"
+          <a href="../devel_manual.html" title="Development Manual"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../user_manual.html" title="User Manual"
+          <a href="toolkit.html" title="Image Processing Toolkit"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">FreeROI 0.2.1 documentation</a> &raquo;</li>
           <li><a href="../user_manual.html" accesskey="U">User Manual</a> &raquo;</li> 
@@ -65,23 +65,15 @@
             <p class="logo"><a href="../index.html">
               <img class="logo" src="../_static/logo_200.png" alt="Logo"/>
             </a></p>
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Introduction</a><ul>
-<li><a class="reference internal" href="#features">Features</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../user_manual.html"
-                        title="previous chapter">User Manual</a></p>
+  <p class="topless"><a href="toolkit.html"
+                        title="previous chapter">Image Processing Toolkit</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="basics.dataformat.html"
-                        title="next chapter">Data Format</a></p>
+  <p class="topless"><a href="../devel_manual.html"
+                        title="next chapter">Development Manual</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/user_manual/overview.txt"
+    <li><a href="../_sources/user_manual/q_and_a.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -105,40 +97,24 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>FreeROI is a versatile image processing software developed for neuroimaging
-data. Its goal is to provide a user-friendly interface for neuroimaging
-researchers to visualize and analyze their data, especially in defining <a class="reference external" href="http://en.wikipedia.org/wiki/Region_of_interest">region
-of interest</a> (ROI) for ROI
-analysis.</p>
-<div class="section" id="features">
-<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
-<p>As its name revealed, FreeROI is focused on the region of interest data analysis
-method.
-It has:</p>
-<ul class="simple">
-<li>Powerful ROI generating and labeling methods, and the corresponding toolset
-and pipelines, which could be used to reliably and efficiently creating ROIs
-specifically for multi-modal neuroimaging analysis (eg. fMRI, Resting,
-DTI...), see <a class="reference internal" href="roianalysis.html#roi-generation"><em>ROI Generation</em></a></li>
-<li>Two modes to view and explore neuroimage data, including a sigle-orientation
-slicing viewer, and a three-orientation slicing viewer. A 3D volume viewer
-would also be available in the near future. For details see <a class="reference internal" href="basics.dataviewing.html#data-viewing"><em>Data Viewing</em></a></li>
-<li>A bunch of data processing tools to manipulate and analyzing neuroimage data,
-see <a class="reference internal" href="toolkit.html#data-analysis-toolkit"><em>Data Analysis Toolset</em></a></li>
-<li>Support for both 3D and 4D neuroimage data, which is very useful for batch
-processing, see <a class="reference internal" href="basics.dataformat.html#data-format"><em>Data format</em></a></li>
-</ul>
-<p>FreeROI is currently under active developing and maintaning by a group of
-experienced neuroimage data analysists, the following are some upcoming
-features:</p>
-<ul class="simple">
-<li>more ROI statistical analysis functions</li>
-<li>more automatic ROI generating functions based on machine learning strategies</li>
-<li>support for surface neuroimaging data format</li>
-</ul>
-</div>
+  <div class="section" id="q-a">
+<h1>Q&amp;A<a class="headerlink" href="#q-a" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic">
+<li><p class="first">How to display an image that showing both positive and negative activation
+in different colors simultaneously?</p>
+<p>Currently, an image could be displayed with only one color scheme, so a
+remedy to do that is inverting the image first, and assigning two different
+color schemes for them.</p>
+</li>
+<li><p class="first">How to get a MNI coordinate of a voxel?</p>
+<p>The coordinate showed in the software is in voxel units. If a MNI standard
+template (voxel size: 2mm x 2mm x 2mm) is loaded, then the MNI coordinate
+could be computed as</p>
+<p>MNI_x = (45 - voxel_x) * 2 mm</p>
+<p>MNI_y = (voxel_y - 63) * 2 mm</p>
+<p>MNI_z = (voxel_z - 36) * 2 mm</p>
+</li>
+</ol>
 </div>
 
 
@@ -154,10 +130,10 @@ features:</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="basics.dataformat.html" title="Data Format"
+          <a href="../devel_manual.html" title="Development Manual"
              >next</a> |</li>
         <li class="right" >
-          <a href="../user_manual.html" title="User Manual"
+          <a href="toolkit.html" title="Image Processing Toolkit"
              >previous</a> |</li>
         <li><a href="../index.html">FreeROI 0.2.1 documentation</a> &raquo;</li>
           <li><a href="../user_manual.html" >User Manual</a> &raquo;</li> 
